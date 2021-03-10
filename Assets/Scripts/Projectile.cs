@@ -6,8 +6,15 @@ public class Projectile : MonoBehaviour
 {
     [SerializeField] private float moveSpeed;
     [SerializeField] private float lifetime;
+    [SerializeField] private float damage;
+    [SerializeField] private GameObject explosion;
     private Rigidbody rigidbody;
     private float lifetimeCounter;
+
+    public float GetDamage { 
+        get { return damage; } 
+        private set { damage = value; } 
+    }
 
     public void Start()
     {
@@ -26,11 +33,9 @@ public class Projectile : MonoBehaviour
             Destroy(gameObject);
     }
 
-    public void OnCollisionEnter(Collision collision)
+    private void OnDestroy()
     {
-        Destroy(gameObject);
-
-        // Destroy() is an inefficient method
-        // Implement an object pooling system
+        var explode = Instantiate(explosion);
+        Destroy(explode.gameObject, 1.5f);
     }
 }

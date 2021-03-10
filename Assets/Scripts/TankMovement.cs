@@ -13,17 +13,8 @@ public class TankMovement : MonoBehaviour
         rigidbody = GetComponent<Rigidbody>();
     }
 
-    public void MoveTank()
+    public void MoveTank(Vector3 moveAxis)
     {
-        // Store a reference to our input
-        var moveAxis = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
-
-        //var forward = transform.forward;    // (0, 0, 1) --> No value outside of 0, 1, or -1
-        //rigidbody.AddForce(moveAxis * moveSpeed);
         rigidbody.velocity = moveAxis * moveSpeed;
-
-        Debug.Log(moveAxis);
-
-        //transform.position += (transform.forward * moveSpeed * Time.deltaTime);
     }
 }
